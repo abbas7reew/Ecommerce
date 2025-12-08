@@ -113,7 +113,7 @@ export default function AboutPage() {
         </p>
 
         {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
           {features.map((item, idx) => (
             <div key={idx} className="p-4 rounded-lg bg-gray-50 dark:bg-slate-700">
               <img src={item.img} className="w-full rounded-lg mb-4 object-cover h-40 hover:scale-105" alt={item.title} />
