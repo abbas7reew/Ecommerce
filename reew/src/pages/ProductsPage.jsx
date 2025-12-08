@@ -41,7 +41,7 @@ export default function ProductsPage() {
 
   return (
     <div className="container mx-auto px-4 py-10 pt-20 animate-fadeUp">
-      <h1 className="text-3xl font-semibold mb-6 animate-fadeScale">{lang === "en" ? "Products" : "المنتجات"}</h1>
+      <h1 className="text-3xl font-semibold mb-6 animate-fadeScale text-amber-700">{lang === "en" ? "Products" : "المنتجات"}</h1>
 
       <div className="flex flex-wrap gap-4 mb-8 animate-fadeUp">
         <input
@@ -72,7 +72,7 @@ export default function ProductsPage() {
       {totalPages > 1 && (
         <div className="flex gap-2 justify-center mt-10 animate-fadeUp">
           <button
-            className="px-3 py-1 border rounded hover:bg-gray-100 transition  hover:scale-105"
+            className="px-3 py-1 border rounded hover:bg-gray-100 transition  hover:scale-105 dark:text-white"
             disabled={currentPage===1}
             onClick={()=>setCurrentPage(p=>p-1)}
           >{lang === "en" ? "Prev" : "السابق"}</button>
@@ -80,13 +80,13 @@ export default function ProductsPage() {
           {[...Array(totalPages)].map((_,i)=>(
             <button
               key={i}
-              className={`px-3 py-1 border rounded ${currentPage===i+1 ? "bg-gray-300" : ""} hover:bg-gray-200 transition`}
+              className={`px-3 py-1 dark:text-white  border rounded ${currentPage===i+1 ? "bg-gray-300" : ""} hover:bg-gray-200 transition`}
               onClick={()=>setCurrentPage(i+1)}
             >{i+1}</button>
           ))}
 
           <button
-            className="px-3 py-1 border rounded hover:bg-gray-100 transition  hover:scale-105"
+            className="px-3 py-1 border rounded hover:bg-gray-100 transition dark:text-white   hover:scale-105"
             disabled={currentPage===totalPages}
             onClick={()=>setCurrentPage(p=>p+1)}
           >{lang === "en" ? "Next" : "التالي"}</button>

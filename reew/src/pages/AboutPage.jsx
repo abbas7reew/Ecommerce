@@ -2,10 +2,50 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useLanguage } from "../context/LanguageContext"; // ⬅ إضافة
+import { useLanguage } from "../context/LanguageContext";
+
+// --- Typewriter Hook ---
+const useTypewriter = (text, speed = 35, pause = 1500, deleteSpeed = 25) => {
+  const [displayed, setDisplayed] = React.useState("");
+
+  React.useEffect(() => {
+    let i = 0;
+    let deleting = false;
+
+    const interval = setInterval(() => {
+      // الكتابة
+      if (!deleting) {
+        setDisplayed(text.slice(0, i));
+        i++;
+
+        if (i > text.length) {
+          deleting = true;
+          i = text.length;
+          return;
+        }
+      }
+
+      // الحذف
+      if (deleting) {
+        setDisplayed(text.slice(0, i));
+        i--;
+
+        if (i < 0) {
+          deleting = false;
+          i = 0;
+        }
+      }
+    }, deleting ? deleteSpeed : speed);
+
+    return () => clearInterval(interval);
+  }, [text, speed, deleteSpeed]);
+
+  return displayed;
+};
+
 
 export default function AboutPage() {
-  const { lang } = useLanguage(); // ⬅ استخدام اللغة
+  const { lang } = useLanguage();
 
   const sliderSettings = {
     dots: true,
@@ -53,32 +93,30 @@ export default function AboutPage() {
     },
   ];
 
+  const aboutText = lang === "en"
+    ? "ReewStyle is a modern clothing brand focused on quality materials and sustainable production. We source responsibly and deliver globally with fast shipping."
+    : "ReewStyle هي علامة تجارية للملابس الحديثة تركز على جودة المواد والإنتاج المستدام. نقوم بالمصدر بمسؤولية ونوصل الطلبات عالمياً بسرعة.";
+
+  const typedText = useTypewriter(aboutText, 35);
+
   return (
     <div className="pt-24 min-h-screen px-6 py-12 space-y-16">
 
-      {/* القسم التعريفي الأساسي */}
-      <div className="max-w-5xl mx-auto bg-white dark:bg-slate-800 rounded-xl p-8 shadow animate-fadeIn">
-        <h1 className="text-3xl font-bold text-indigo-600 dark:text-indigo-300 mb-4 animate-slideInLeft">
+      {/* Basic Intro Section */}
+      <div className="max-w-5xl mx-auto bg-white dark:bg-slate-800 rounded-xl p-8 shadow">
+        <h1 className="text-3xl font-bold text-indigo-600 dark:text-indigo-300 mb-4  ">
           {lang === "en" ? "About ReewStyle" : "عن ReewStyle"}
         </h1>
-        <p className="text-gray-700 dark:text-gray-300 mb-6 animate-slideInRight">
-          {lang === "en"
-            ? "ReewStyle is a modern clothing brand focused on quality materials and sustainable production. We source responsibly and deliver globally with fast shipping."
-            : "ReewStyle هي علامة تجارية للملابس الحديثة تركز على جودة المواد والإنتاج المستدام. نقوم بالمصدر بمسؤولية ونوصل الطلبات عالمياً بسرعة."}
+
+        <p className="text-gray-700 dark:text-gray-300 mb-6">
+          {typedText}
         </p>
 
+        {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-4 rounded-lg bg-gray-50 dark:bg-slate-700 animate-fadeInUp"
-              style={{ animationDelay: `${idx * 200}ms` }}
-            >
-              <img
-                src={item.img}
-                className="w-full rounded-lg mb-4 object-cover h-40 transition-transform duration-500 transform hover:scale-105"
-                alt={item.title}
-              />
+            <div key={idx} className="p-4 rounded-lg bg-gray-50 dark:bg-slate-700">
+              <img src={item.img} className="w-full rounded-lg mb-4 object-cover h-40 hover:scale-105" alt={item.title} />
               <h3 className="font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">{item.desc}</p>
             </div>
@@ -86,23 +124,23 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* قسم Slider للصور */}
-      <section className="max-w-6xl mx-auto py-12 animate-fadeInUp">
-        <h2 className="text-3xl font-semibold text-center mb-8 animate-slideInLeft">
+      {/* Slider Section */}
+      <section className="max-w-6xl mx-auto py-12 text-center">
+        <h1 className="text-3xl  font-semibold text-center mb-8 text-rose-500">
           {lang === "en" ? "Featured Products" : "منتجات مميزة"}
-        </h2>
+        </h1>
 
         <Slider {...sliderSettings}>
-          {sliderImages.map((slide, idx) => (
+          {sliderImages.map((slide) => (
             <div key={slide.id} className="px-3">
-              <div className="relative bg-white dark:bg-slate-800 p-5 rounded-xl shadow-md overflow-hidden group animate-fadeInUp" style={{ animationDelay: `${idx * 100}ms` }}>
+              <div className="relative bg-white dark:bg-slate-800 p-5 rounded-xl shadow-md overflow-hidden">
                 <img
                   src={slide.image}
-                  className="w-full h-56 md:h-64 lg:h-72 object-cover rounded-lg transition-transform duration-500 transform group-hover:scale-105"
+                  className="w-full h-56 md:h-64 lg:h-72 object-cover rounded-lg hover:scale-105"
                   alt={slide.title}
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center rounded-lg">
-                  <h3 className="text-white text-xl font-semibold mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <h3 className="text-white text-xl font-semibold mb-4">
                     {slide.title}
                   </h3>
                 </div>
@@ -112,24 +150,26 @@ export default function AboutPage() {
         </Slider>
       </section>
 
-      {/* قسم Why Choose Us */}
-      <section className="max-w-6xl mx-auto py-12 flex flex-col md:flex-row items-center gap-8 animate-fadeInUp">
-        <div className="md:w-1/2 animate-slideInLeft">
+      {/* Why Choose Us */}
+      <section className="max-w-6xl mx-auto py-12 flex flex-col md:flex-row items-center gap-8">
+        <div className="md:w-1/2">
           <img
             src="/images/hero.jpg"
-            className="w-full rounded-xl object-cover transition-transform duration-700 transform hover:scale-105"
+            className="w-full rounded-xl object-cover hover:scale-105"
             alt={lang === "en" ? "Why Choose Us" : "لماذا تختار متجرنا"}
           />
         </div>
-        <div className="md:w-1/2 space-y-4 animate-slideInRight">
-          <h2 className="text-3xl font-semibold">
+
+        <div className="md:w-1/2 space-y-4">
+          <h2 className="text-3xl font-semibold text-purple-700">
             {lang === "en" ? "Why Choose Our Store?" : "لماذا تختار متجرنا؟"}
           </h2>
           <p className="text-gray-700 dark:text-gray-300">
             {lang === "en"
-              ? "ReewStyle offers high-quality products, exceptional customer service, and fast worldwide shipping. Our commitment to sustainable fashion and exclusive collections ensures you get the best shopping experience."
-              : "ReewStyle يقدم منتجات عالية الجودة، خدمة عملاء مميزة، وشحن سريع عالمي. التزامنا بالموضة المستدامة والمجموعات الحصرية يضمن لك أفضل تجربة تسوق."}
+              ? "ReewStyle offers high-quality products, exceptional customer service, and fast worldwide shipping."
+              : "ReewStyle يقدم منتجات عالية الجودة، خدمة عملاء مميزة، وشحن سريع عالمي."}
           </p>
+
           <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
             <li>{lang === "en" ? "Top-quality fabrics and materials" : "أقمشة ومواد عالية الجودة"}</li>
             <li>{lang === "en" ? "Fast and secure delivery" : "توصيل سريع وآمن"}</li>

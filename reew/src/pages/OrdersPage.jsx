@@ -21,7 +21,7 @@ export default function OrdersPage() {
           {orders.map((order) => (
             <li
               key={order.id}
-              className="border p-3 rounded flex justify-between items-center"
+              className="border border-black p-3 rounded flex justify-between items-center"
             >
               <span>{order.name}</span>
 
