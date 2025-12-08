@@ -27,4 +27,56 @@ html, body, #root {
   transition: background-color 200ms ease, color 200ms ease;
 }
 
+
+.typewriter {
+white-space: pre-line;
+overflow: hidden;
+border-right: 2px solid #777;
+animation: cursorBlink 0.7s infinite;
+}
+
+@keyframes cursorBlink {
+0% { border-color: transparent; }
+50% { border-color: #777; }
+100% { border-color: transparent; }
+}
+
  
+/* Apply "Coming Soon" text animation style to all H1 elements */
+
+h1 {
+  animation: comingSoonText 3s ease-in-out infinite;
+  display: inline-block;
+  backface-visibility: hidden;
+}
+
+/* The animation inspired by tailwind-animations.dev Coming Soon effect */
+@keyframes comingSoonText {
+  0% {
+    opacity: 0.7;
+    filter: blur(1px);
+    transform: translateY(0px);
+  }
+  20% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(-1px);
+  }
+  40% {
+    opacity: 0.85;
+    filter: blur(0.5px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0px);
+    filter: blur(0px);
+  }
+  80% {
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}

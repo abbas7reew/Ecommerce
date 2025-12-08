@@ -45,27 +45,28 @@ export default function HeroSlider() {
   };
 
   return (
-    <section className="w-full overflow-hidden">
-      <Slider {...settings}>
-        {slides.map(slide => (
-          <div key={slide.id} className="relative h-[70vh] md:h-[80vh] w-full animate-fadeUp">
-            <img src={slide.image} alt={slide.title} className="w-full h-full object-cover object-center" />
-            <div className="absolute inset-0 bg-black/40"></div>
-            <div className="absolute inset-0 flex flex-col justify-center items-start text-white px-6 md:px-20 space-y-4">
-              <h1 className="text-3xl md:text-5xl font-bold animate-fadeLeft">{slide.title}</h1>
-              <p className="text-lg md:text-xl max-w-xl animate-fadeLeft delay-100">{slide.subtitle}</p>
-              <Link
-                to="/products"
-                className="bg-white text-black px-6 py-3 rounded-lg text-lg font-medium hover:bg-gray-200 transition transform hover:scale-105 animate-fadeUp delay-200"
-              >
-                {slide.btn}
-              </Link>
-            </div>
+  <section className="w-full h-screen overflow-hidden">
+    <Slider {...settings}>
+      {slides.map(slide => (
+        <div key={slide.id} className="relative h-screen w-full animate-fadeUp">
+          <img src={slide.image} alt={slide.title} className="w-full h-full object-cover object-center" />
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 flex flex-col justify-center items-start text-white px-6 md:px-20 space-y-4">
+            <h1 className="text-3xl md:text-5xl font-bold animate-fadeLeft">{slide.title}</h1>
+            <p className="text-lg md:text-xl max-w-xl animate-fadeLeft delay-100">{slide.subtitle}</p>
+            <Link
+              to="/products"
+              className="bg-white text-black px-6 py-3 rounded-lg text-lg font-medium hover:bg-gray-200 transition transform hover:scale-105 animate-fadeUp delay-200"
+            >
+              {slide.btn}
+            </Link>
           </div>
-        ))}
-      </Slider>
-    </section>
-  );
+        </div>
+      ))}
+    </Slider>
+  </section>
+);
+
 }
 
 
