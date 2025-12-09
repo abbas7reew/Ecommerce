@@ -113,9 +113,9 @@ export default function AboutPage() {
         </p>
 
         {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((item, idx) => (
-            <div key={idx} className="p-4 rounded-lg bg-gray-50 dark:bg-slate-700">
+            <div key={idx} className="p-4 rounded-lg bg-gray-50 dark:bg-slate-700 git commit -m "first commit"">
               <img src={item.img} className="w-full rounded-lg mb-4 object-cover h-40 hover:scale-105" alt={item.title} />
               <h3 className="font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">{item.desc}</p>
@@ -125,7 +125,7 @@ export default function AboutPage() {
       </div>
 
       {/* Slider Section */}
-      <section className="max-w-6xl mx-auto py-12 text-center">
+      <section className="max-w-6xl mx-auto py-12 text-center ">
         <h1 className="text-3xl  font-semibold text-center mb-8 text-rose-500">
           {lang === "en" ? "Featured Products" : "منتجات مميزة"}
         </h1>
