@@ -115,7 +115,7 @@ export default function AboutPage() {
         {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((item, idx) => (
-            <div key={idx} className="p-4 rounded-lg bg-gray-50 dark:bg-slate-700 git commit -m "first commit"">
+            <div key={idx} className="p-4 rounded-lg bg-gray-50 dark:bg-slate-700">
               <img src={item.img} className="w-full rounded-lg mb-4 object-cover h-40 hover:scale-105" alt={item.title} />
               <h3 className="font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">{item.desc}</p>
