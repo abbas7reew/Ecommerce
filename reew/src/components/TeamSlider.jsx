@@ -17,7 +17,7 @@ export default function TeamSlider() {
     dots: true,
     infinite: true,
     speed: 600,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,
@@ -28,7 +28,7 @@ export default function TeamSlider() {
   };
 
   return (
-    <section className="w-full h-screen bg-white dark:bg-gray-800 flex flex-col justify-center items-center px-4 animate-fadeUp overflow-hidden">
+    <section className="w-full h-screen bg-white flex flex-col justify-center items-center px-4 animate-fadeUp overflow-hidden">
       <div className="container mx-auto text-center">
         <h1 className="text-3xl  font-semibold mb-6 text-center animate-fadeScale text-rose-500">
           {lang === "en" ? "Our Team" : "فريقنا"}

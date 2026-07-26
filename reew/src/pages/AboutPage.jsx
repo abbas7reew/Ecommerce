@@ -151,7 +151,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="max-w-6xl mx-auto py-12 flex  md:flex-row items-center gap-8">
+      <section className="max-w-6xl mx-auto py-12 flex flex-col md:flex-row items-center gap-8">
         <div className="md:w-1/2">
           <img
             src="/images/hero.jpg"

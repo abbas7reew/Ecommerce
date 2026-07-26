@@ -14,7 +14,7 @@ import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <HashRouter>   
+    <HashRouter>   {/* ← التعديل الوحيد */}
       <LanguageProvider>
         <ThemeProvider>
           <OrdersProvider>
