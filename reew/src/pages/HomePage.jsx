@@ -8,8 +8,8 @@ export default function HomePage() {
   const { lang } = useLanguage();
 
   return (
-    <div className="pt-20">
-      {/* الحاوية التي تحتوي كل السلايدز  */}
+    <div >
+      
       <div className="relative w-full h-[400vh]">
 
         {/* Slide 1 */}

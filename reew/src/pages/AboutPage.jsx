@@ -113,7 +113,7 @@ export default function AboutPage() {
         </p>
 
         {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
           {features.map((item, idx) => (
             <div key={idx} className="p-4 rounded-lg bg-gray-50 dark:bg-slate-700">
               <img src={item.img} className="w-full rounded-lg mb-4 object-cover h-40 hover:scale-105" alt={item.title} />
@@ -125,7 +125,7 @@ export default function AboutPage() {
       </div>
 
       {/* Slider Section */}
-      <section className="max-w-6xl mx-auto py-12 text-center ">
+      <section className="max-w-6xl mx-auto py-12 text-center">
         <h1 className="text-3xl  font-semibold text-center mb-8 text-rose-500">
           {lang === "en" ? "Featured Products" : "منتجات مميزة"}
         </h1>
@@ -151,7 +151,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="max-w-6xl mx-auto py-12 flex flex-col md:flex-row items-center gap-8">
+      <section className="max-w-6xl mx-auto py-12 flex  md:flex-row items-center gap-8">
         <div className="md:w-1/2">
           <img
             src="/images/hero.jpg"

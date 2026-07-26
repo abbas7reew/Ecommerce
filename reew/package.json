@@ -2,8 +2,12 @@
   "name": "reew",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://abbas7reew.github.io/E-commerce",
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist",
+    "preview": "vite preview",
     "json-server": "json-server --watch public/reew/db.json --port 4000"
   },
   "dependencies": {
@@ -26,8 +30,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.4.6",
     "vite": "^5.0.0"
   }
+
+  
 }

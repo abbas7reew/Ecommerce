@@ -1,13 +1,16 @@
 import { useOrders } from "../context/OrdersContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ إضافة
 
 export default function OrdersPage() {
   const { orders, deleteOrder, getOrderById } = useOrders();
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const navigate = useNavigate(); // ✅ إضافة
 
   const handleViewDetails = (id) => {
     const order = getOrderById(id);
-    setSelectedOrder(order);
+    setSelectedOrder(order); // ⬅️ لم نحذفه (كما طلبت)
+    navigate(`/orders/${id}`); // ✅ الانتقال لصفحة التفاصيل
   };
 
   return (
@@ -23,7 +26,7 @@ export default function OrdersPage() {
               key={order.id}
               className="border border-black p-3 rounded flex justify-between items-center"
             >
-              <span>{order.name}</span>
+              <span className="dark:text-white" >{order.name}</span>
 
               <div className="space-x-2">
                 <button
@@ -45,15 +48,7 @@ export default function OrdersPage() {
         </ul>
       )}
 
-      {/* تفاصيل الطلب */}
-      {selectedOrder && (
-        <div className="mt-6 p-4 border rounded bg-gray-50">
-          <h2 className="text-lg font-bold mb-2">Order Details</h2>
-          <p><strong>ID:</strong> {selectedOrder.id}</p>
-          <p><strong>Name:</strong> {selectedOrder.name}</p>
-          <p><strong>Price:</strong> {selectedOrder.price}</p>
-        </div>
-      )}
+      
     </div>
   );
 }

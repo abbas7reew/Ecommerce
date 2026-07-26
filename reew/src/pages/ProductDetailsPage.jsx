@@ -20,14 +20,7 @@ export default function ProductDetailsPage() {
     .catch(err => console.error(err));
 }, [id]);
 
-  useEffect(() => {
-  axios.get(`http://localhost:4000/products/${id}`)
-    .then(res => {
-      console.log("PRODUCT FROM SERVER:", res.data);   // ← مهم جدًا
-      setProduct(res.data);
-    })
-    .catch(err => console.error(err));
-}, [id]);
+ 
 
 
   if (!product) return <div className="text-center py-20 animate-fadeUp">{lang === "en" ? "Loading..." : "جاري التحميل..."}</div>;
@@ -38,7 +31,7 @@ export default function ProductDetailsPage() {
   };
 
   return (
-    <div className="container mx-auto py-10 grid grid-cols-1 md:grid-cols-2 gap-8 animate-fadeUp pt-20">
+    <div className="container mx-auto py-10 grid grid-cols-2  gap-8 animate-fadeUp pt-20">
       <div className="animate-fadeLeft">
         <img src={product.image} alt={product.name} className="w-full rounded-xl shadow hover:scale-105 transition" />
       </div>
